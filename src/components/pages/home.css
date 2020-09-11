@@ -1,0 +1,42 @@
+.frm-label {
+  background-color: white;
+}
+
+.btn-add-item {
+  margin-top: 50px;
+}
+
+.frm-body {
+  background-color: lightyellow;
+}
+
+.error {
+    color:red;
+}
+
+.modal-title {
+  color: white;
+  font-weight: 700;
+  text-shadow: 5px 4px 8px #2A3522;
+}
+
+.modal-header {
+  background: rgb(253, 240, 45);
+  background: linear-gradient(
+    0deg,
+    rgba(253, 240, 45, 1) 11%,
+    rgba(84, 82, 9, 1) 37%,
+    rgba(253, 240, 45, 1) 67%
+  );
+ 
+}
+
+.modal-footer {
+  /* background-color: rgb(138, 235, 134); */
+  background: rgb(15, 84, 9);
+  background: linear-gradient(
+    0deg,
+    rgba(15, 84, 9, 1) 23%,
+    rgba(253, 240, 45, 1) 49%
+  );
+}
