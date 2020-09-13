@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Form, Col, Row } from "react-bootstrap";
 import AddTodoModal from ".././AddTodoModal";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import "./Todos.css";
 import { db } from "../.././api/firebaseconfig";
 
@@ -12,12 +14,16 @@ const Todos = () => {
   const [dueDate, setDueDate] = useState('')
   const [errorMessage, setErrorMessage] = useState("");
 
+  toast.configure()
+  
   const handleShow = () => {
     setDescription("");
-    setShowModal(true);
+    setShowModal(true); 
   };
 
-  const saveNewTodo = () => {};
+  const saveNewTodo = () => {
+    return toast("Data saved!", {position: toast.POSITION.BOTTOM_CENTER, type: "success", autoClose: 3000})
+  };
 
   const handleClose = () => {
     if (isFormValid() === false) {
@@ -31,6 +37,7 @@ const Todos = () => {
         done: false
       }).then(() => {
         console.log("Data Added")
+        
       }).catch((err) => {
         console.log(err)
       })
@@ -39,6 +46,7 @@ const Todos = () => {
       saveNewTodo();
     }
   };
+
 
   const handleCancel = () => {
     setShowModal(false);
@@ -53,8 +61,16 @@ const Todos = () => {
     }
   }
 
-  const deleteItem = (e) => {
-    console.log("Deleting ", e);
+  const deleteItem = (id) => {
+    if (!id) return
+    console.log("Deleting ", id);
+    // const id = e.id
+    // console.log(id)
+    db.collection("todos").doc(id).delete().then(() => {
+      return toast("Record deleted", {position: toast.POSITION.TOP_CENTER, type: "info", autoClose: 3000})
+    }).catch((err) => {
+      return toast("Error", {position: toast.POSITION.TOP_CENTER, type: "warning", autoClose: 3000})
+    })
   };
 
   const addItem = () => {
