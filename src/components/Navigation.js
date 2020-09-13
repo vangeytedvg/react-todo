@@ -1,8 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
+import "../components/pages/home.css";
 
-const Navigation = () => {
+const Navigation = ({ handleLogout }) => {
+
+  const handleSelection = (e) => {
+    console.log("Tweet");
+  };
+
   return (
     <Navbar collapseOnSelect expand="lg" fixed="top" bg="dark" variant="dark">
       <Navbar.Brand href="/">DenkaTech</Navbar.Brand>
@@ -12,6 +18,15 @@ const Navigation = () => {
           <NavLink to="/" className="d-inline p-2 bg-dark text-white">
             Home
           </NavLink>
+          <NavLink to="/todos" className="d-inline p-2 bg-dark text-white">
+            Tools
+          </NavLink>
+        </Nav>
+        <Nav>
+          {/* Calls the home/handleLogout function passed a prop */}
+          <Button className="button-ok" variant="primary" onClick={handleLogout}>
+            Logout
+          </Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -1,9 +1,17 @@
-.frm-label {
+/* .frm-label {
   background-color: white;
 }
 
 .btn-add-item {
   margin-top: 50px;
+}
+
+.btn-logout {
+  width: 150px;
+}
+
+.button-ok, .button-cancel {
+  width: 140px;
 }
 
 .frm-body {
@@ -12,8 +20,8 @@
 
 .error {
     color:red;
-}
-
+} */
+/* 
 .modal-title {
   color: white;
   font-weight: 700;
@@ -21,22 +29,16 @@
 }
 
 .modal-header {
-  background: rgb(253, 240, 45);
-  background: linear-gradient(
-    0deg,
-    rgba(253, 240, 45, 1) 11%,
-    rgba(84, 82, 9, 1) 37%,
-    rgba(253, 240, 45, 1) 67%
-  );
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,77,121,0.9612219887955182) 28%, rgba(0,212,255,1) 100%);
  
 }
 
 .modal-footer {
-  /* background-color: rgb(138, 235, 134); */
   background: rgb(15, 84, 9);
   background: linear-gradient(
     0deg,
     rgba(15, 84, 9, 1) 23%,
     rgba(253, 240, 45, 1) 49%
-  );
-}
+  ); */
+

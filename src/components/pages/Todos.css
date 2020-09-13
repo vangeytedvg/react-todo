@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+th {
+  color: orange;
+  font-weight: 100;
+}
+
+/* 
+thead:hover {
+  background-color: darkslategrey;
+} */
+
+body {
+  background: linear-gradient(
+    90deg,
+    rgba(48, 16, 255, 1) 0%,
+    rgba(100, 115, 255, 1) 100%
+  );
+}
+
+.todo-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 900px;
+  min-height: 300px;
+  background: #161a2b;
+  text-align: center;
+  margin: 100px auto;
+  padding-bottom: 32px;
+  padding-top: 10px;
+}
+
+.todo-row {
+  justify-content: space-between;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 800px;
+  padding: 30px;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 118, 20, 1) 0%,
+    rgba(255, 84, 17, 1) 100%
+  );
+}
+
+.frm-label {
+  background-color: white;
+}
+
+.btn-add-item {
+  margin-top: 50px;
+  transition: ;
+}
+
+.spacer {
+  margin-left: 5px;
+}
+
+.size-btn {
+  width: auto;
+}
+
+.delete-btn {
+  width: auto;
+}
+
+.btn-logout {
+  width: 150px;
+}
+
+.button-ok,
+.button-cancel {
+  width: 140px;
+}
+
+.frm-body {
+  background-color: lightyellow;
+}
+
+.error {
+  color: red;
+}
+
+
+.todoContainer {
+  margin-top: 0px;
+  padding: 60px;
+  width: 100%;
+  max-width: 900px;
+  min-height: 200px;
+  display: flex;
+  /* Each item that is added is nicely placed with the next line */
+  flex-direction: column;
+  justify-content: center;
+  background: rgb(34, 29, 189);
+  background: linear-gradient(
+    338deg,
+    rgba(34, 29, 189, 0.4066001400560224) 5%,
+    rgba(43, 49, 187, 1) 20%,
+    rgba(51, 69, 184, 1) 35%
+  );
+}

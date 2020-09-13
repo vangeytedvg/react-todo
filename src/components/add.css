@@ -1,0 +1,63 @@
+.form-label {
+  background-color: white;
+}
+
+.btn-add-item {
+  margin-top: 50px;
+}
+
+.btn-logout {
+  width: 150px;
+}
+
+.button-ok,
+.button-cancel {
+  width: 140px;
+}
+
+.frm-body {
+  background-color: lightyellow;
+}
+
+.error {
+  color: red;
+}
+
+.title {
+  color: white;
+  font-weight: 700;
+  text-shadow: 5px 4px 8px #2a3522;
+}
+
+.modal-body .frm-control {
+  background-color: #d8d8d8;
+}
+
+.modal-title {
+  color: white;
+  font-weight: 700;
+  text-shadow: 5px 4px 8px #2a3522;
+}
+
+.modal-header {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 77, 121, 0.9612219887955182) 28%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.modal-footer {
+  /* background-color: rgb(138, 235, 134); */
+  background: rgb(2,0,36);
+  background: linear-gradient(270deg, rgba(2,0,36,1) 33%, rgba(0,212,255,1) 100%);
+}
