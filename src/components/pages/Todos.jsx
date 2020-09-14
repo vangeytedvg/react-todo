@@ -104,14 +104,14 @@ const Todos = () => {
       .delete()
       .then(() => {
         return toast("Record deleted", {
-          position: toast.POSITION.TOP_CENTER,
+          position: toast.POSITION.BOTTOM_CENTER,
           type: "info",
           autoClose: 3000,
         });
       })
       .catch((err) => {
         return toast("Error", {
-          position: toast.POSITION.TOP_CENTER,
+          position: toast.POSITION.BOTTOM_CENTER,
           type: "warning",
           autoClose: 3000,
         });
@@ -141,8 +141,11 @@ const Todos = () => {
     
   };
 
+  /**
+   * Get the todos collection
+   */
   const getTodos = async () => {
-    db.collection("todos").onSnapshot((querySnapshot) => {
+    db.collection("todos").orderBy("due_date").onSnapshot((querySnapshot) => {
       const docs = [];
       querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), id: doc.id });

@@ -102,7 +102,7 @@ body {
 
 .todo-item-done {
   text-decoration: line-through;
-  background-color: rgb(10, 10, 10);
+  background-color: rgba(20, 18, 18, 0.541);
   color: green;
 }
 
