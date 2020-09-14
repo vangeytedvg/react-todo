@@ -102,10 +102,21 @@ body {
 
 .todo-item-done {
   text-decoration: line-through;
-  background-color: rgba(20, 18, 18, 0.541);
+  background-color: rgb(20, 18, 18);
   color: green;
 }
 
+.todo-item-overdue {
+  background-color: red;
+  color: yellow;
+}
+
+.btn-add-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
 .todoContainer {
   margin-top: 0px;
