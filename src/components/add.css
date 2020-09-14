@@ -1,5 +1,6 @@
 .form-label {
   background-color: white;
+  margin-right: 10px;
 }
 
 .btn-add-item {
@@ -32,6 +33,11 @@
 .modal-body .frm-control {
   background-color: #d8d8d8;
 }
+
+.date-picker {
+  margin-right: 1Opx;
+}
+
 
 .modal-title {
   color: white;

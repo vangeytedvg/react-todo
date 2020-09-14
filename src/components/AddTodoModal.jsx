@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 import './add.css'
 
 const AddTodoModal = ({
@@ -14,6 +16,20 @@ const AddTodoModal = ({
   errorMessage,
   setErrorMessage,
 }) => {
+
+  const [currenDate, setCurrentDate] = useState('')
+
+
+  const handleDateChanged = (date) => {
+    setDueDate(date.toLocaleDateString())
+    setCurrentDate(date)
+  }
+
+  useEffect(() => {
+    setCurrentDate(new Date())
+    setDueDate(new Date().toLocaleDateString())
+  }, [])
+
   return (
     <div>
       <Modal
@@ -41,7 +57,14 @@ const AddTodoModal = ({
                 placeholder="Enter todo description"
               />
               <Form.Label className="frm-label">Due Date</Form.Label>
+              <div>
+              <DatePicker className="date-picker"
+                selected={currenDate}
+                onChange={handleDateChanged}/>
+              </div>
               <Form.Control
+                value = {dueDate}
+                
                 onChange={(e) => setDueDate(e.target.value)}
                 type="text"
                 placeholder="Enter due date"
