@@ -152,7 +152,7 @@ const Todos = (props) => {
   };
 
   /**
-   * Get the todos collection
+   * Get the todos collection, get items per user id
    */
   const getTodos = async () => {
     db.collection("todos")
