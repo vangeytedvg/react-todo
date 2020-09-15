@@ -18,7 +18,5 @@ export const DateToDBDate = (thedate) => {
 export const isOverDue = (dueDate) => {
     const theDate = new Date().toLocaleDateString()
     const newDate = DateToDBDate(theDate)
-    console.log("KWAKKEDIKWAK", dueDate,"DEET")
-    console.log("ZOINK", newDate)
     return newDate > dueDate
 }

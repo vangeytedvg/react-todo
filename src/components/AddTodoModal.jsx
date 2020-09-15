@@ -27,7 +27,6 @@ const AddTodoModal = ({
 
   useEffect(() => {
     setCurrentDate(new Date())
-    setDueDate(new Date().toLocaleDateString())
   }, [])
 
   return (

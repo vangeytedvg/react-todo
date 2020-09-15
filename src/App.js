@@ -111,13 +111,13 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        // <Hero handleLogout={handleLogout}/>
         <>
           <Router>
             <Navigation handleLogout={handleLogout} />
             <Switch>
               <Route path="/" component={Home} exact />
-              <Route path="/todos" component={Todos} />
+              {/* Passing props through router */}
+              <Route path="/todos" render={(props) => <Todos {...props} authuser={user}></Todos>}/>
             </Switch>
           </Router>
         </>

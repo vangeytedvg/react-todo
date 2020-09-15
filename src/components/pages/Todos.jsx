@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Form, Col, Row } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import AddTodoModal from ".././AddTodoModal";
 import { DateToDBDate, isOverDue } from "../../api/DateUtils";
 import "./Todos.css";
@@ -7,7 +7,7 @@ import { db } from "../.././api/firebaseconfig";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Todos = () => {
+const Todos = (props) => {
   // Array to hold the list of todos from firebase
   const [todos, setTodos] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -36,6 +36,9 @@ const Todos = () => {
       setErrorMessage("One or more fields need input!");
       return false;
     } else {
+      /**
+       * Form is ok, now save the data
+       */
       let theDate = "";
       let dateCreated = "";
       // Had to apply this trick in the case the user does not
@@ -43,7 +46,6 @@ const Todos = () => {
       if (dueDate === "") {
         theDate = new Date().toLocaleDateString();
         const newDate = DateToDBDate(theDate);
-        console.log("newdate = ", newDate);
       } else {
         theDate = dueDate;
       }
@@ -55,6 +57,7 @@ const Todos = () => {
           date_entered: DateToDBDate(dateCreated),
           due_date: convertedDate,
           done: false,
+          userid: props.authuser.uid
         })
         .then(() => {
           console.log("Data Added");
@@ -85,6 +88,9 @@ const Todos = () => {
     cleanFields();
   };
 
+  /**
+   * Primitive function to check form validity
+   */
   function isFormValid() {
     if (description.length === 0) {
       return false;
@@ -151,6 +157,7 @@ const Todos = () => {
   const getTodos = async () => {
     db.collection("todos")
       .orderBy("due_date")
+      .where("userid", "==", props.authuser.uid)
       .onSnapshot((querySnapshot) => {
         const docs = [];
         querySnapshot.forEach((doc) => {
@@ -161,14 +168,9 @@ const Todos = () => {
       });
   };
 
-  // const haveFun = (datefield) => {
-  //   let duedat = new Date()
-  //   let today = new Date()
-  //   duedat = Date(datefield)
-  //   console.log(today === duedat)
-  // }
-
   useEffect(() => {
+    // On page load get the todos
+    console.log("WAZAAA", props.authuser.uid)
     getTodos();
   }, []);
 
