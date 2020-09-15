@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
+import useSound from 'use-sound'
+import boring from '../../sounds/boring.mp3'
 import AddTodoModal from ".././AddTodoModal";
 import { DateToDBDate, isOverDue } from "../../api/DateUtils";
 import "./Todos.css";
@@ -16,6 +18,14 @@ const Todos = (props) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [startDate, setStartDate] = useState("");
   toast.configure();
+
+
+
+  const BoringLabel = () => {
+    const [play] = useSound(boring);
+    // return <button onClick={play}>Boop!</button>;
+    return <div onClick={play} className="no-todos">Boring... Nothing to do!</div>
+  };
 
   const cleanFields = () => {
     setErrorMessage("");
@@ -168,6 +178,10 @@ const Todos = (props) => {
       });
   };
 
+  function playSound() {
+    console.log("KWAK")
+  }
+
   useEffect(() => {
     // On page load get the todos
     console.log("WAZAAA", props.authuser.uid)
@@ -196,9 +210,10 @@ const Todos = (props) => {
             {/* Display a message when there are no todos */}
             {todos.length === 0  && (
               <td colSpan="4">
-              <div className="no-todos">Boring... Nothing to do!</div>
+                <BoringLabel />
               </td>)
             }
+            {/* Display the todos if there are */}
             {todos.map((todo, key) => {
               return (
                 <tr key={key}>
