@@ -193,6 +193,12 @@ const Todos = (props) => {
             </tr>
           </thead>
           <tbody>
+            {/* Display a message when there are no todos */}
+            {todos.length === 0  && (
+              <td colSpan="4">
+              <div className="no-todos">Boring... Nothing to do!</div>
+              </td>)
+            }
             {todos.map((todo, key) => {
               return (
                 <tr key={key}>
