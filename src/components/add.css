@@ -3,6 +3,7 @@
   margin-right: 10px;
 }
 
+
 .btn-add-item {
   margin-top: 50px;
 }
@@ -16,8 +17,8 @@
   width: 140px;
 }
 
-.frm-body {
-  background-color: lightyellow;
+.frmadd-body {
+  background-color: white;
 }
 
 .error {
@@ -36,8 +37,13 @@
 
 .date-picker {
   margin-right: 1Opx;
+  margin-left: 10px;
 }
 
+.date-time-fields {
+  display: flex;
+  padding: 10px;
+}
 
 .modal-title {
   color: white;

@@ -24,7 +24,7 @@ const Navigation = ({ handleLogout }) => {
         </Nav>
         <Nav>
           {/* Calls the home/handleLogout function passed a prop */}
-          <Button className="button-ok" variant="primary" onClick={handleLogout}>
+          <Button className="button-ok" variant="success" onClick={handleLogout}>
             Logout
           </Button>
         </Nav>

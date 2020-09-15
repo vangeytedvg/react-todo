@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -11,10 +11,11 @@ const AddTodoModal = ({
   setDescription,
   dueDate,
   setDueDate,
+  dueTime,
+  setDueTime,
   handleClose,
   handleCancel,
   errorMessage,
-  setErrorMessage,
 }) => {
 
   const [currenDate, setCurrentDate] = useState('')
@@ -22,6 +23,7 @@ const AddTodoModal = ({
 
   const handleDateChanged = (date) => {
     setDueDate(date.toLocaleDateString())
+    setDueTime(date.toLocaleTimeString())
     setCurrentDate(date)
   }
 
@@ -47,10 +49,10 @@ const AddTodoModal = ({
           {errorMessage ? (
             <span className="error">&nbsp;{errorMessage}</span>
           ) : null}
-          <Form className="frm-body">
-            <Form.Group controlId="form">
+          <Form className="frmadd-body">
+            <Form.Group>
               <Form.Label>Describe the todo</Form.Label>
-              <Form.Control autoFocus="true"
+              <Form.Control 
                 onChange={(e) => setDescription(e.target.value)}
                 type="text"
                 placeholder="Enter todo description"
@@ -59,15 +61,25 @@ const AddTodoModal = ({
               <div>
               <DatePicker className="date-picker"
                 selected={currenDate}
+                showTimeSelect
                 onChange={handleDateChanged}/>
               </div>
-              <Form.Control
+              <section className="date-time-fields">
+              <Form.Control className="date-picker"
                 value = {dueDate}
-                
+                disabled
                 onChange={(e) => setDueDate(e.target.value)}
                 type="text"
-                placeholder="Enter due date"
+                placeholder="Due date"
               />
+              <Form.Control className="date-picker"
+                value = {dueTime}
+                disabled
+                onChange={(e) => setDueTime(e.target.value)}
+                type="text"
+                placeholder="Due time"
+              />
+              </section>
             </Form.Group>
           </Form>
         </Modal.Body>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
-import useSound from 'use-sound'
-import boring from '../../sounds/boring.mp3'
+import useSound from "use-sound";
+import boring from "../../sounds/boring.mp3";
 import AddTodoModal from ".././AddTodoModal";
-import { DateToDBDate, isOverDue } from "../../api/DateUtils";
+import { DateToDBDate, isOverDue, makeDateReadable } from "../../api/DateUtils";
 import "./Todos.css";
 import { db } from "../.././api/firebaseconfig";
 import { toast } from "react-toastify";
@@ -15,24 +15,34 @@ const Todos = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [dueTime, setDueTime] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [startDate, setStartDate] = useState("");
   toast.configure();
 
-
-
   const BoringLabel = () => {
     const [play] = useSound(boring);
     // return <button onClick={play}>Boop!</button>;
-    return <div onClick={play} className="no-todos">Boring... Nothing to do!</div>
+    return (
+      <div onClick={play} className="no-todos">
+        Boring... Nothing to do!
+      </div>
+    );
   };
 
+  /**
+   * Clear the fields
+   */
   const cleanFields = () => {
     setErrorMessage("");
     setDescription("");
     setDueDate("");
+    setDueTime("");
   };
 
+  /**
+   * Show the modal
+   */
   const handleShow = () => {
     cleanFields();
     setShowModal(true);
@@ -66,11 +76,11 @@ const Todos = (props) => {
           title: description,
           date_entered: DateToDBDate(dateCreated),
           due_date: convertedDate,
+          due_time: dueTime,
           done: false,
-          userid: props.authuser.uid
+          userid: props.authuser.uid,
         })
         .then(() => {
-          console.log("Data Added");
           return toast("Data saved!", {
             position: toast.POSITION.BOTTOM_CENTER,
             type: "success",
@@ -78,7 +88,6 @@ const Todos = (props) => {
           });
         })
         .catch((err) => {
-          console.log(err);
           return toast(`Error! ${err}`, {
             position: toast.POSITION.BOTTOM_CENTER,
             type: "error",
@@ -115,9 +124,7 @@ const Todos = (props) => {
    */
   const deleteItem = (id) => {
     if (!id) return;
-    console.log("Deleting ", id);
     // const id = e.id
-    // console.log(id)
     db.collection("todos")
       .doc(id)
       .delete()
@@ -161,30 +168,31 @@ const Todos = (props) => {
       });
   };
 
+  const editRecord = (id) => {}
+
   /**
    * Get the todos collection on a per user base
    */
   const getTodos = async () => {
     db.collection("todos")
       .orderBy("due_date")
+      .orderBy("due_time")
       .where("userid", "==", props.authuser.uid)
       .onSnapshot((querySnapshot) => {
         const docs = [];
         querySnapshot.forEach((doc) => {
           docs.push({ ...doc.data(), id: doc.id });
         });
-        console.log("Docs ", docs);
         setTodos(docs);
+        console.log("JELL", docs)
       });
   };
 
-  function playSound() {
-    console.log("KWAK")
-  }
-
+  /**
+   * useEffect hook
+   */
   useEffect(() => {
     // On page load get the todos
-    console.log("WAZAAA", props.authuser.uid)
     getTodos();
   }, []);
 
@@ -192,6 +200,7 @@ const Todos = (props) => {
     <>
       <div className="todo-app">
         <div className="btn-add-container">
+          <span className="todo-title-header">Current todo's</span>
           <Button className="size-btn" onClick={handleShow}>
             Add new todo
           </Button>
@@ -202,17 +211,18 @@ const Todos = (props) => {
               {/* <th>Id</th> */}
               <th>Task title</th>
               <th>Date Due</th>
+              <th>Time due</th>
               <th>Created</th>
               <th>Done</th>
             </tr>
           </thead>
           <tbody>
             {/* Display a message when there are no todos */}
-            {todos.length === 0  && (
+            {todos.length === 0 && (
               <td colSpan="4">
                 <BoringLabel />
-              </td>)
-            }
+              </td>
+            )}
             {/* Display the todos if there are */}
             {todos.map((todo, key) => {
               return (
@@ -224,6 +234,7 @@ const Todos = (props) => {
                       <td className="todo-item-done">
                         {todo.due_date.toString()}
                       </td>
+                      <td className="todo-item-done">{todo.due_time}</td>
                       <td className="todo-item-done">
                         {todo.date_entered.toString()}
                       </td>
@@ -238,10 +249,11 @@ const Todos = (props) => {
                         <>
                           <td className="todo-item-overdue">{todo.title}</td>
                           <td className="todo-item-overdue">
-                            {todo.due_date.toString()}
+                            {makeDateReadable(todo.due_date.toString())}
                           </td>
+                          <td className="todo-item-overdue">{todo.due_time}</td>
                           <td className="todo-item-overdue">
-                            {todo.date_entered.toString()}
+                            {makeDateReadable(todo.date_entered.toString())}
                           </td>
                           <td className="todo-item-overdue">
                             {todo.done ? "Yes" : "No"}
@@ -256,10 +268,11 @@ const Todos = (props) => {
                         <>
                           <td className="todo-item">{todo.title}</td>
                           <td className="todo-item">
-                            {todo.due_date.toString()}
+                            {makeDateReadable(todo.due_date.toString())}
                           </td>
+                          <td className="todo-item">{todo.due_time}</td>
                           <td className="todo-item">
-                            {todo.date_entered.toString()}
+                            {makeDateReadable(todo.date_entered.toString())}
                           </td>
                           <td className="todo-item">
                             {todo.done ? "Yes" : "No"}
@@ -269,7 +282,6 @@ const Todos = (props) => {
                     </>
                   )}
                   <td className={todo.done ? "todo-item-done" : "todo-item"}>
-                    <i className="" />
                     <span className="spacer">
                       {todo.done && (
                         <Button
@@ -287,6 +299,14 @@ const Todos = (props) => {
                           <i className="material-icons">done</i>
                         </Button>
                       )}
+                    </span>
+                    <span className="spacer">
+                      <Button
+                        onClick={() => editRecord(todo.id)}
+                        variant="warning"
+                      >
+                        <i className="material-icons">edit</i>
+                      </Button>
                     </span>
                     <span className="spacer">
                       <Button
@@ -309,6 +329,8 @@ const Todos = (props) => {
         setDescription={setDescription}
         dueDate={dueDate}
         setDueDate={setDueDate}
+        dueTime={dueTime}
+        setDueTime={setDueTime}
         handleClose={handleClose}
         errorMessage={errorMessage}
         setErrorMessage={setErrorMessage}

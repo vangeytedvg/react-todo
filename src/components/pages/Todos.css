@@ -27,7 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 900px;
+  width: 95vw;
   background: #161a2b;
   text-align: center;
   margin: 100px auto;
@@ -97,9 +97,16 @@ body {
   text-decoration: none;
 }
 
+.todo-title-header {
+  font-size: 20px;
+  color:lavender;
+  margin:auto;
+}
+
 .todo-item-done {
   text-decoration: line-through;
   background-color: rgb(20, 18, 18);
+  font-style: italic;
   color: green;
 }
 
@@ -110,9 +117,10 @@ body {
 
 .btn-add-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .no-todos {

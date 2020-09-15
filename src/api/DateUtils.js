@@ -11,6 +11,12 @@ export const DateToDBDate = (thedate) => {
     return newDate
 }
 
+export const makeDateReadable = (date) => {
+    // YYYYMMDD to DD/MM/YYYY
+    let normalDate = date.substr(6, 2) + "/" + date.substr(4,2) + "/" + date.substr(0,4)
+    return normalDate
+}
+
 /**
  * Check if todo is over due
  * @param {*} dueDate 

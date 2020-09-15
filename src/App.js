@@ -52,6 +52,9 @@ function App() {
           case "auth/wrong-password":
             setPasswordError(err.message);
             break;
+          default:
+            setPasswordError("No option")
+            break;
         }
       });
   };
@@ -73,6 +76,9 @@ function App() {
           case "auth/weak-password":
             setPasswordError(err.message);
             break;
+          default:
+            setPasswordError('No option')
+            break
         }
       });
   };
@@ -82,7 +88,6 @@ function App() {
    */
   const handleLogout = () => {
     fire.auth().signOut();
-    console.log("KWAKKEKDIKEK")
   };
 
   /**
@@ -110,7 +115,8 @@ function App() {
 
   return (
     <div className="App">
-      {user ? (
+      {/* If we have a user */}
+      {user && (
         <>
           <Router>
             <Navigation handleLogout={handleLogout} />
@@ -121,7 +127,9 @@ function App() {
             </Switch>
           </Router>
         </>
-      ) : (
+      )}
+      {/* User not logged in */}
+      {!user && (
         <Login
           // Pass the states to the login component
           email={email}
@@ -137,7 +145,7 @@ function App() {
           emailError={emailError}
           passwordError={passwordError}
         />
-      )}
+      )}  
     </div>
   );
 }
