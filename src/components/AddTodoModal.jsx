@@ -20,7 +20,6 @@ const AddTodoModal = ({
 
   const [currenDate, setCurrentDate] = useState('')
 
-
   const handleDateChanged = (date) => {
     setDueDate(date.toLocaleDateString())
     setDueTime(date.toLocaleTimeString())
@@ -58,7 +57,7 @@ const AddTodoModal = ({
                 placeholder="Enter todo description"
               />
               <Form.Label className="frm-label">Due Date</Form.Label>
-              <div>
+              <div>  
               <DatePicker className="date-picker"
                 selected={currenDate}
                 showTimeSelect

@@ -18,15 +18,16 @@ const Todos = (props) => {
   const [dueTime, setDueTime] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [startDate, setStartDate] = useState("");
+  const [play] = useSound(boring);
   toast.configure();
 
-  const BoringLabel = () => {
-    const [play] = useSound(boring);
-    // return <button onClick={play}>Boop!</button>;
+  const BoringLabel = () => {;
+    // Had a problem here, I used a useState field here,
+    // but react complained about it. So I moved the state to the main function above
     return (
-      <div onClick={play} className="no-todos">
-        Boring... Nothing to do!
-      </div>
+       <div onClick={play} className="no-todos">
+        <div className="no-todos">Boring... Nothing to do!</div>
+       </div>
     );
   };
 
@@ -168,6 +169,7 @@ const Todos = (props) => {
       });
   };
 
+  // Todo : Add code to edit an existing record
   const editRecord = (id) => {}
 
   /**
@@ -219,9 +221,10 @@ const Todos = (props) => {
           <tbody>
             {/* Display a message when there are no todos */}
             {todos.length === 0 && (
-              <td colSpan="4">
+              <tr><td colSpan="5">
                 <BoringLabel />
               </td>
+              </tr>
             )}
             {/* Display the todos if there are */}
             {todos.map((todo, key) => {
