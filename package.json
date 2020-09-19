@@ -16,7 +16,8 @@
     "react-scripts": "3.4.3",
     "react-toastify": "^6.0.8",
     "tailwindcss": "^1.8.7",
-    "use-sound": "^1.0.2"
+    "use-sound": "^1.0.2",
+    "yarn": "^1.22.5"
   },
   "scripts": {
     "start": "react-scripts start",

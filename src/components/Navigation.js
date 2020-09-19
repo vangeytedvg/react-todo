@@ -21,6 +21,9 @@ const Navigation = ({ handleLogout }) => {
           <NavLink to="/todos" className="d-inline p-2 bg-dark text-white">
             Tools
           </NavLink>
+          <NavLink to="/todo-on-fire" className="d-inline p-2 bg-dark text-white">
+            Todos On Fire
+          </NavLink>
         </Nav>
         <Nav>
           {/* Calls the home/handleLogout function passed a prop */}

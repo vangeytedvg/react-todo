@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/pages/Home.jsx";
 import Login from "./components/Login";
 import Todos from "./components/pages/Todos";
+import TodoOnFire from './components/pages/TodoOnFire'
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -67,6 +68,7 @@ function App() {
     fire
       .auth()
       .createUserWithEmailAndPassword(email, password)
+      .then(() => console.log("user created"))
       .catch((err) => {
         switch (err.code) {
           case "auth/email-already-in-use":
@@ -124,6 +126,7 @@ function App() {
               <Route path="/" component={Home} exact />
               {/* Passing props through router */}
               <Route path="/todos" render={(props) => <Todos {...props} authuser={user}></Todos>}/>
+              <Route path="/todo-on-fire" render={(props) => <TodoOnFire {...props} authuser={user}></TodoOnFire>}/>
             </Switch>
           </Router>
         </>

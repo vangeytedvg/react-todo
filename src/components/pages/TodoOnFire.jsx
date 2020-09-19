@@ -1,0 +1,165 @@
+import React, { useState, useEffect } from "react";
+import { db } from "../.././api/firebaseconfig";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./todo_on_fire.css";
+
+toast.configure();
+
+const TodoOnFire = (props) => {
+    const [done, setDone] = useState(true);
+    const [todos, setTodos] = useState([]);
+    const [newItem, setNewItem] = useState("");
+
+    const addNewTodo = (e) => {
+        // If the keystroke is not enter
+        if (e.key === "Enter") {
+            console.log(e);
+            if (!e.key === "Enter") return;
+            db.collection("todos")
+                .add({
+                    title: newItem,
+                    date_entered: new Date(),
+                    due_date: new Date(),
+                    due_time: "",
+                    done: false,
+                    userid: props.authuser.uid,
+                })
+                .then(() => {
+                    return toast("Data saved!", {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        type: "success",
+                        autoClose: 3000,
+                    });
+                })
+                .catch((err) => {
+                    return toast(`Error! ${err}`, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        type: "error",
+                        autoClose: 10000,
+                    });
+                });
+        }
+    };
+
+    const markAsDone = (id, state) => {
+        db.collection("todos")
+            .doc(id)
+            .update({ done: !state })
+            .then(() => {
+                return toast("Todo updated", {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    type: "info",
+                    autoClose: 1000,
+                });
+            })
+            .catch((err) => {
+                return toast("Error", {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    type: "warning",
+                    autoClose: 1000,
+                });
+            });
+    };
+
+    const deleteItem = (id) => {
+        if (!id) return;
+        // const id = e.id
+        db.collection("todos")
+            .doc(id)
+            .delete()
+            .then(() => {
+                return toast("Record deleted", {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                    type: "info",
+                    autoClose: 3000,
+                });
+            })
+            .catch((err) => {
+                return toast("Error", {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                    type: "warning",
+                    autoClose: 3000,
+                });
+            });
+    };
+
+    const onDoneClicked = () => {
+        console.log("test");
+
+        toast(`Error!`, {
+            position: toast.POSITION.BOTTOM_CENTER,
+            type: "error",
+            autoClose: 1000,
+        });
+    };
+
+    useEffect(() => {
+        getTodos();
+    }, []);
+
+    /**
+     * Get the todos collection on a per user base
+     */
+    const getTodos = async () => {
+        db.collection("todos")
+            .orderBy("date_entered")
+            .orderBy("title")
+            .where("userid", "==", props.authuser.uid)
+            .onSnapshot((querySnapshot) => {
+                const docs = [];
+                querySnapshot.forEach((doc) => {
+                    docs.push({ ...doc.data(), id: doc.id });
+                });
+                setTodos(docs);
+                console.log("JELL", docs);
+            });
+    };
+
+    return (
+        <div className="tdof-container">
+            <h1 className="tdof-container-title">Todo's on Fire</h1>
+            <div className="tdf-input-add">
+                <div className="tdof-add">
+                    <input
+                        className="tdof-input-field"
+                        type="text"
+                        value={newItem}
+                        onChange={(e) => setNewItem(e.target.value)}
+                        placeholder="<Add new item>"
+                        onKeyPress={addNewTodo}
+                    />
+                </div>
+                <div>
+                    <i
+                        onClick={addNewTodo}
+                        className="material-icons tdof-add-btn"
+                    >
+                        add
+                    </i>
+                </div>
+            </div>
+            {todos.map((todo, key) => {
+                return (
+                    <div
+                        key={key}
+                        className={todo.done ? "tdof-item-done" : "tdof-item"}
+                    >
+                        <h2 className="tdf-item-content">{todo.title}</h2>
+                        <div>
+                            <i
+                                onClick={() => markAsDone(todo.id, todo.done)}
+                                className="material-icons tdof-i"
+                            >
+                                done
+                            </i>
+                            <i onClick={() => deleteItem(todo.id)} className="material-icons tdof-i">delete</i>
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
+    );
+};
+
+export default TodoOnFire;
