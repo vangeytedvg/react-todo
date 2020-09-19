@@ -12,16 +12,15 @@ const TodoOnFire = (props) => {
     const [newItem, setNewItem] = useState("");
 
     const addNewTodo = (e) => {
-        // If the keystroke is not enter
-        if (!newItem) {
-            return toast(`Error! Can not add an empty todo`, {
-                position: toast.POSITION.TOP_CENTER,
-                type: "error",
-                autoClose: 1000,
-            });
-        }
         if (e.key === "Enter") {
-            if (!e.key === "Enter") return;
+            // If the keystroke is not enter
+            if (!newItem) {
+                return toast(`Error! Can not add an empty todo`, {
+                    position: toast.POSITION.TOP_CENTER,
+                    type: "error",
+                    autoClose: 1000,
+                });
+            }
             db.collection("todos")
                 .add({
                     title: newItem,
