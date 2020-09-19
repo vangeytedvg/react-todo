@@ -13,8 +13,14 @@ const TodoOnFire = (props) => {
 
     const addNewTodo = (e) => {
         // If the keystroke is not enter
+        if (!newItem) {
+            return toast(`Error! Can not add an empty todo`, {
+                position: toast.POSITION.TOP_CENTER,
+                type: "error",
+                autoClose: 1000,
+            });
+        }
         if (e.key === "Enter") {
-            console.log(e);
             if (!e.key === "Enter") return;
             db.collection("todos")
                 .add({
@@ -84,16 +90,6 @@ const TodoOnFire = (props) => {
             });
     };
 
-    const onDoneClicked = () => {
-        console.log("test");
-
-        toast(`Error!`, {
-            position: toast.POSITION.BOTTOM_CENTER,
-            type: "error",
-            autoClose: 1000,
-        });
-    };
-
     useEffect(() => {
         getTodos();
     }, []);
@@ -112,7 +108,6 @@ const TodoOnFire = (props) => {
                     docs.push({ ...doc.data(), id: doc.id });
                 });
                 setTodos(docs);
-                console.log("JELL", docs);
             });
     };
 
