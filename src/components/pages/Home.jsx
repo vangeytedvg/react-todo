@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import earthLinks from "../../videos/earthLinks.mp4";
 import Button from "react-bootstrap/Button";
-import "./home.css";
+// import "./home.css";
 import AddLink from "../AddLink";
 
 const Home = ({ user }) => {
