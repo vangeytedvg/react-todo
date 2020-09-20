@@ -70,6 +70,7 @@ const TodoOnFire = (props) => {
                 });
             })
             .catch((err) => {
+                // We have an error
                 return toast("Error", {
                     position: toast.POSITION.BOTTOM_RIGHT,
                     type: "warning",
