@@ -1,3 +1,13 @@
+/**
+ * This is the todos on fire part of the book-keeper application.
+ * These todos are stored in the todosonfire collection of firebase
+ * and are independent of the Todos.jsx component.
+ * Author : Danny Van Geyte
+ * History:
+ *  DEVSTART : 18/09/2020
+ *  MOD :
+ *      - 20/09/2020 Fine tuning of the firebase collection todosonfire
+ */
 import React, { useState, useEffect } from "react";
 import { db } from "../.././api/firebaseconfig";
 import { toast } from "react-toastify";
@@ -21,7 +31,7 @@ const TodoOnFire = (props) => {
                     autoClose: 1000,
                 });
             }
-            db.collection("todos")
+            db.collection("todosonfire")
                 .add({
                     title: newItem,
                     date_entered: new Date(),
@@ -48,7 +58,7 @@ const TodoOnFire = (props) => {
     };
 
     const markAsDone = (id, state) => {
-        db.collection("todos")
+        db.collection("todosonfire")
             .doc(id)
             .update({ done: !state })
             .then(() => {
@@ -70,7 +80,7 @@ const TodoOnFire = (props) => {
     const deleteItem = (id) => {
         if (!id) return;
         // const id = e.id
-        db.collection("todos")
+        db.collection("todosonfire")
             .doc(id)
             .delete()
             .then(() => {
@@ -97,7 +107,7 @@ const TodoOnFire = (props) => {
      * Get the todos collection on a per user base
      */
     const getTodos = async () => {
-        db.collection("todos")
+        db.collection("todosonfire")
             .orderBy("date_entered")
             .orderBy("title")
             .where("userid", "==", props.authuser.uid)
@@ -122,6 +132,7 @@ const TodoOnFire = (props) => {
                         onChange={(e) => setNewItem(e.target.value)}
                         placeholder="<Add new item>"
                         onKeyPress={addNewTodo}
+                        required
                     />
                 </div>
                 <div>

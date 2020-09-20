@@ -1,4 +1,5 @@
 import React from "react";
+import './login.css'
 
 const Login = (props) => {
   // Destructure the props parameter
@@ -16,6 +17,7 @@ const Login = (props) => {
   } = props;
 
   return (
+    <div className="background">
     <section className="login">
       <div className="loginContainer">
         <label>Username</label>
@@ -58,6 +60,7 @@ const Login = (props) => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 
