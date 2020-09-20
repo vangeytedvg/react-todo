@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
-import "../components/pages/home.css";
 
 const Navigation = ({ handleLogout }) => {
 
@@ -18,9 +17,7 @@ const Navigation = ({ handleLogout }) => {
           <NavLink to="/" className="d-inline p-2 bg-dark text-white">
             Home
           </NavLink>
-          <NavLink to="/todos" className="d-inline p-2 bg-dark text-white">
-            Tools
-          </NavLink>
+          <NavLink to="/todos" className="d-inline p-2 bg-dark text-white">Tools</NavLink>
           <NavLink to="/todo-on-fire" className="d-inline p-2 bg-dark text-white">
             Todos On Fire
           </NavLink>

@@ -9,7 +9,7 @@
  *      - 20/09/2020 Fine tuning of the firebase collection todosonfire
  */
 import React, { useState, useEffect } from "react";
-import { db } from "../.././api/firebaseconfig";
+import fire, { db } from "../.././api/firebaseconfig";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./todo_on_fire.css";
@@ -41,7 +41,8 @@ const TodoOnFire = (props) => {
                     userid: props.authuser.uid,
                 })
                 .then(() => {
-                    return toast("Data saved!", {
+                    setNewItem("");
+                    return toast("Todo saved!", {
                         position: toast.POSITION.BOTTOM_CENTER,
                         type: "success",
                         autoClose: 3000,
@@ -99,16 +100,12 @@ const TodoOnFire = (props) => {
             });
     };
 
-    useEffect(() => {
-        getTodos();
-    }, []);
-
     /**
      * Get the todos collection on a per user base
      */
     const getTodos = async () => {
         db.collection("todosonfire")
-            .orderBy("date_entered")
+            .orderBy("date_entered", "desc")
             .orderBy("title")
             .where("userid", "==", props.authuser.uid)
             .onSnapshot((querySnapshot) => {
@@ -119,6 +116,10 @@ const TodoOnFire = (props) => {
                 setTodos(docs);
             });
     };
+
+    useEffect(() => {
+        getTodos();
+    }, []);
 
     return (
         <div className="tdof-container">
@@ -158,7 +159,12 @@ const TodoOnFire = (props) => {
                             >
                                 done
                             </i>
-                            <i onClick={() => deleteItem(todo.id)} className="material-icons tdof-i">delete</i>
+                            <i
+                                onClick={() => deleteItem(todo.id)}
+                                className="material-icons tdof-i"
+                            >
+                                delete
+                            </i>
                         </div>
                     </div>
                 );
