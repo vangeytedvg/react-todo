@@ -17,7 +17,7 @@ const Navigation = ({ handleLogout }) => {
           <NavLink to="/" className="d-inline p-2 bg-dark text-white">
             Home
           </NavLink>
-          <NavLink to="/todos" className="d-inline p-2 bg-dark text-white">Tools</NavLink>
+          <NavLink to="/todos" className="d-inline p-2 bg-dark text-white">Agenda</NavLink>
           <NavLink to="/todo-on-fire" className="d-inline p-2 bg-dark text-white">
             Todos On Fire
           </NavLink>

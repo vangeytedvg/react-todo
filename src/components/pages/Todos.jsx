@@ -202,15 +202,14 @@ const Todos = (props) => {
     <>
       <div className="todo-app">
         <div className="btn-add-container">
-          <span className="todo-title-header">Current todo's</span>
+          <span className="todo-title-header">Current Agenda items</span>
           <Button className="size-btn" onClick={handleShow}>
-            Add new todo
+            New appointment
           </Button>
         </div>
         <Table responsive striped hover variant="dark">
           <thead>
             <tr>
-              {/* <th>Id</th> */}
               <th>Task title</th>
               <th>Date Due</th>
               <th>Time due</th>

@@ -124,7 +124,6 @@ function App() {
             <Navigation handleLogout={handleLogout} />
             <Switch>
               <Route path="/" component={Home} exact />
-              {/* Passing props through router */}
               <Route path="/todos" render={(props) => <Todos {...props} authuser={user}></Todos>}/>
               <Route path="/todo-on-fire" render={(props) => <TodoOnFire {...props} authuser={user}></TodoOnFire>}/>
             </Switch>

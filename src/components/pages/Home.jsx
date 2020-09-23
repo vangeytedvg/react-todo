@@ -2,9 +2,7 @@
   Example of using a modal with React Bootstrap
 */
 import React, { useState } from "react";
-import earthLinks from "../../videos/earthLinks.mp4";
 import Button from "react-bootstrap/Button";
-// import "./home.css";
 import AddLink from "../AddLink";
 
 const Home = ({ user }) => {
@@ -82,10 +80,7 @@ const Home = ({ user }) => {
 
   return (
     <>
-      <video autoPlay loop muted>
-        <source src={earthLinks} type="video/mp4" />
-      </video>
-      <div className="hero-container">
+      <div >
         <p>Home sweet home</p>
         <Button className="btn-add-item" variant="primary" onClick={handleShow}>
           Add Item

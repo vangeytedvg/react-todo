@@ -54,7 +54,7 @@ const AddTodoModal = ({
               <Form.Control 
                 onChange={(e) => setDescription(e.target.value)}
                 type="text"
-                placeholder="Enter todo description"
+                placeholder="Enter agenda topic"
               />
               <Form.Label className="frm-label">Due Date</Form.Label>
               <div>  

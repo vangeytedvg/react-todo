@@ -46,7 +46,7 @@
     /* Each item that is added is nicely placed with the next line */
     flex-direction: column;
     justify-content: center;
-    background: rgb(68, 65, 173);
+    /* background: rgb(68, 65, 173); */
     background: linear-gradient(
         338deg,
         rgba(33, 33, 51, 0.407) 5%,

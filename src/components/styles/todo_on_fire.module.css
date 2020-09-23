@@ -5,18 +5,25 @@
     font-family: "Nunito", sans-serif;
   }
 
-.tdof-i {
+.tdof_i {
     margin-right:10px;
     cursor:pointer;
 }
 
-.tdof-i:hover {
+.tdof_i:hover {
     font-size:1.8em;
     color:rgb(54, 85, 22);
     text-shadow: rgb(47, 185, 12) 0 0 15px;
 }
 
-.tdof-container {
+.waiting {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.tdofcontainer {
     display: flex;
     color: lightgray;
     flex-direction: column;
@@ -26,18 +33,18 @@
     margin-bottom: 50px;
     padding: 5px;
     width: auto;
-    border-radius: 8px;
+    border-radius: 15px;
     background-color: black;
     justify-content: center;
     align-content: center;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.9);
 }
 
-.tdf-item-content {
+.tdf_item_content {
     font-size: 1em;
 }
 
-.tdof-input-field {
+.tdof_input_field {
     color:green;
     margin-left:10px;
     width: 100%;
@@ -49,22 +56,22 @@
     box-shadow: 0 0 10px rgb(173, 179, 163);
 }
 
-.tdof-add {
+.tdof_add {
     margin-right: 20px;
     width: 100%;
 }
 
-.tdof-add-btn {
+.tdof_add_btn {
     color: green;
 }
 
-.tdof-add-btn:hover {
+.tdof_add_btn:hover {
     color: green;
     cursor: pointer;
 }
 
 
-.tdf-input-add {
+.tdf_input_add {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -77,7 +84,7 @@
     text-shadow: rgb(142, 163, 21) 0 0 15px;
 }
 
-.tdof-container-title {
+.tdofcontainertitle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,7 +95,7 @@
     font-size: 3em;
 }
 
-.tdof-item {
+.tdof_item {
     display: flex;
     flex-direction: row;
     margin-left: 10px;
@@ -105,7 +112,7 @@
     box-shadow: 0 0 10px rgb(141, 218, 17);
 }
 
-.tdof-item-done {
+.tdof_item_done {
     display: flex;
     flex-direction: row;
     margin-left: 10px;

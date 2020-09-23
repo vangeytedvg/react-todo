@@ -15,13 +15,7 @@ thead:hover {
   background-color: darkslategrey;
 } */
 
-body {
-  background: linear-gradient(
-    90deg,
-    rgba(48, 16, 255, 1) 0%,
-    rgba(100, 115, 255, 1) 100%
-  );
-}
+/*  */
 
 .todo-app {
   display: flex;
@@ -33,6 +27,8 @@ body {
   margin: 100px auto;
   padding-bottom: 10px;
   padding-top: 10px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.9);
 }
 
 .todo-row {
@@ -140,6 +136,11 @@ body {
     0 -18px 40px #f00;
   font-size: 50px;
   cursor:pointer;
+}
+
+.table-body-container {
+  border: none;
+  border-radius: 15px;
 }
 
 .todoContainer {
