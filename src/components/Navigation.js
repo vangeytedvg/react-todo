@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
+import { motion } from "framer-motion"
 
 const Navigation = ({ handleLogout }) => {
 
@@ -23,10 +24,13 @@ const Navigation = ({ handleLogout }) => {
           </NavLink>
         </Nav>
         <Nav>
-          {/* Calls the home/handleLogout function passed a prop */}
-          <Button className="button-ok" variant="success" onClick={handleLogout}>
+          {/* Calls the home/handleLogout function passed as prop */}
+          <motion.Button className="button-ok" variant="success" onClick={handleLogout}
+            animate={{ rotate: 360}}
+            transition={{ duration: 1}}
+            >
             Logout
-          </Button>
+          </motion.Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -146,7 +146,7 @@ const TodoOnFire = (props) => {
         </div>
       </div>
       {isLoading && (
-        <div >
+        <div>
           <Loader
             type="Circles"
             color="#00BFFF"

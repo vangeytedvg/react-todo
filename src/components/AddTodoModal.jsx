@@ -1,3 +1,7 @@
+/**
+ * AddTodoModal.jsx
+ * Add or edit a new agenda item to firebase.
+ */
 import React, {useEffect, useState, useRef} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
