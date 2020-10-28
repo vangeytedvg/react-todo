@@ -170,7 +170,9 @@ const Todos = (props) => {
   };
 
   // Todo : Add code to edit an existing record
-  const editRecord = (id) => {}
+  const editRecord = (id) => {
+
+  }
 
   /**
    * Get the todos collection on a per user base
@@ -210,7 +212,7 @@ const Todos = (props) => {
         <Table responsive striped hover variant="dark">
           <thead>
             <tr>
-              <th>Task title</th>
+              <th>Agenda</th>
               <th>Date Due</th>
               <th>Time due</th>
               <th>Created</th>
@@ -225,7 +227,7 @@ const Todos = (props) => {
               </td>
               </tr>
             )}
-            {/* Display the todos if there are */}
+            {/* Display the todos if there are any */}
             {todos.map((todo, key) => {
               return (
                 <tr key={key}>

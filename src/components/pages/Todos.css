@@ -10,13 +10,6 @@ th {
   font-weight: 100;
 }
 
-/* 
-thead:hover {
-  background-color: darkslategrey;
-} */
-
-/*  */
-
 .todo-app {
   display: flex;
   flex-direction: column;
