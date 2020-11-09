@@ -112,8 +112,8 @@ const TodoOnFire = (props) => {
   const getTodos = async () => {
     setIsLoading(true);
     db.collection("todosonfire")
-      .orderBy("date_entered", "desc", "title")
-      // .orderBy("title")
+      .orderBy("date_entered", "desc")
+      .orderBy("title")
       .where("userid", "==", props.authuser.uid)
       .onSnapshot((querySnapshot) => {
         const docs = [];

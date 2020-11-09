@@ -74,14 +74,14 @@ const Home = ({ user }) => {
     setShowModal(false);
   };
 
-  let doIt = (e) => {
-    console.log("Did it", e.target.value);
-  };
+  // let doIt = (e) => {
+  //   console.log("Did it", e.target.value);
+  // };
 
   return (
     <>
-      <div >
-        <p>Home sweet home</p>
+      <div>
+        <p>Home sweet home</p>x
         <Button className="btn-add-item" variant="primary" onClick={handleShow}>
           Add Item
         </Button>
@@ -95,7 +95,6 @@ const Home = ({ user }) => {
           errorMessage={errorMessage}
           setErrorMessage={setErrorMessage}
         />
-        
       </div>
     </>
   );
